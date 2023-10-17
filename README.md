@@ -12,10 +12,10 @@ To use the Bitonga Dictionary SDK, follow these steps:
 
 3. Initialize the SDK in your code:
 
-   ```php
-   require_once 'path/to/BitongaDictionarySDK.php';
-   $bitongaSDK = new BitongaDictionarySDK();
-   ```
+```php
+require_once 'path/to/BitongaDictionarySDK.php';
+$bitongaSDK = new BitongaDictionarySDK();
+```
 
 ## Usage
 
