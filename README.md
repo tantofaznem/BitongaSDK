@@ -82,9 +82,6 @@ if __name__ == "__main__":
     updated_word_data = {"word": "updated_word", "translation": "updated_translation"}
     bitonga_sdk.update_bitonga_word(word_id, updated_word_data)
 
-    # Delete a Bitonga word by ID
-    word_id = 1
-    bitonga_sdk.delete_bitonga_word(word_id)
 ```
 
 # JavaScript Usage
@@ -129,21 +126,21 @@ public class Main {
 
         BitongaDictionarySDK bitongaSDK = new BitongaDictionarySDK(apiUrl, apiKey);
 
-        // Example: Get all Bitonga words
+        // Get all Bitonga words
         String words = bitongaSDK.getBitongaWords();
         System.out.println(words);
 
-        // Example: Get a specific Bitonga word by ID
+        // Get a specific Bitonga word by ID
         int wordId = 1;
         String word = bitongaSDK.getBitongaWord(wordId);
         System.out.println(word);
 
-        // Example: Add a new Bitonga word
+        // Add a new Bitonga word
         String newWordData = "{\"word\": \"new_word\", \"translation\": \"new_translation\"}";
         String newWord = bitongaSDK.addBitongaWord(newWordData);
         System.out.println(newWord);
 
-        // Example: Update a Bitonga word
+        // Update a Bitonga word
         String updatedWordData = "{\"word\": \"updated_word\", \"translation\": \"updated_translation\"}";
         String updateResult = bitongaSDK.updateBitongaWord(1, updatedWordData);
         System.out.println(updateResult);
