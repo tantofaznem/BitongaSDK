@@ -72,7 +72,7 @@ if __name__ == "__main__":
     bitonga_word = bitonga_sdk.get_bitonga_word(word_id)
     print(bitonga_word)
 
-    # Example: Add a new Bitonga word
+    # Add a new Bitonga word
     new_word_data = {"word": "new_word", "translation": "new_translation"}
     new_word = bitonga_sdk.add_bitonga_word(new_word_data)
     print(new_word)
@@ -118,6 +118,8 @@ bitongaSDK.updateBitongaWord(1, updatedWordData).then(updateResult => {
   console.log(updateResult);
 });
 ```
+
+
 ## Example of response
 
 ```
