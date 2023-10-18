@@ -63,11 +63,11 @@ if __name__ == "__main__":
 
     bitonga_sdk = BitongaDictionarySDK(api_url, api_key)
 
-    # Example: Get all Bitonga words
+    # Get all Bitonga words
     bitonga_words = bitonga_sdk.get_bitonga_words()
     print(bitonga_words)
 
-    # Example: Get a specific Bitonga word by ID
+    # Get a specific Bitonga word by ID
     word_id = 1
     bitonga_word = bitonga_sdk.get_bitonga_word(word_id)
     print(bitonga_word)
@@ -77,16 +77,47 @@ if __name__ == "__main__":
     new_word = bitonga_sdk.add_bitonga_word(new_word_data)
     print(new_word)
 
-    # Example: Update a Bitonga word by ID
+    # Update a Bitonga word by ID
     word_id = 1
     updated_word_data = {"word": "updated_word", "translation": "updated_translation"}
     bitonga_sdk.update_bitonga_word(word_id, updated_word_data)
 
-    # Example: Delete a Bitonga word by ID
+    # Delete a Bitonga word by ID
     word_id = 1
     bitonga_sdk.delete_bitonga_word(word_id)
 ```
 
+# JavaScript Usage
+
+```javascript
+const apiUrl = 'http://example.com'; // Replace with your API URL
+const apiKey = 'your_api_key'; // Replace with your API key
+
+const bitongaSDK = new BitongaDictionarySDK(apiUrl, apiKey);
+
+// Get all Bitonga words
+bitongaSDK.getBitongaWords().then(words => {
+  console.log(words);
+});
+
+// Get a specific Bitonga word by ID
+const wordId = 1;
+bitongaSDK.getBitongaWord(wordId).then(word => {
+  console.log(word);
+});
+
+// Add a new Bitonga word
+const newWordData = { word: 'new_word', translation: 'new_translation' };
+bitongaSDK.addBitongaWord(newWordData).then(newWord => {
+  console.log(newWord);
+});
+
+// Update a Bitonga word
+const updatedWordData = { word: 'updated_word', translation: 'updated_translation' };
+bitongaSDK.updateBitongaWord(1, updatedWordData).then(updateResult => {
+  console.log(updateResult);
+});
+```
 ## Example of response
 
 ```
