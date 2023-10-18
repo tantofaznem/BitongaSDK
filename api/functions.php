@@ -46,7 +46,7 @@ function getClientIdentifier() {
     if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
         $authorizationHeader = $_SERVER['HTTP_AUTHORIZATION'];
         
-        // Example: Bearer token
+        // Bearer token
         if (strpos($authorizationHeader, 'Bearer ') === 0) {
             // Extract the token from the header
             $token = substr($authorizationHeader, 7);
@@ -57,7 +57,7 @@ function getClientIdentifier() {
             }
         }
 
-        // Example: Basic authentication (API key)
+        // Basic authentication (API key)
         if (strpos($authorizationHeader, 'Basic ') === 0) {
             // Extract and decode the API key
             $base64Credentials = substr($authorizationHeader, 6);
@@ -73,7 +73,7 @@ function getClientIdentifier() {
     }
 
     // If the client identifier is not found or valid, return an error or handle it based on your requirements.
-    // For example, return a 401 Unauthorized response.
+    // Return a 401 Unauthorized response.
     http_response_code(401);
     die("Unauthorized");
 }
