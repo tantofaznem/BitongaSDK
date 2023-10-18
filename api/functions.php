@@ -15,7 +15,7 @@ function connectToDatabase() {
 // Rate Limiting Function
 function isRateLimited() {
     // Define a unique identifier for the current request, such as the client's IP address or API key
-    $requestIdentifier = getClientIdentifier(); // Implement getClientIdentifier() to retrieve the client identifier
+    $requestIdentifier = getClientIdentifier();
 
     // Set a time window (e.g., 1 minute) for the rate limit
     $timeWindow = 60; // 60 seconds
@@ -23,19 +23,19 @@ function isRateLimited() {
     // Define the rate limit allowed within the time window
     $rateLimit = RATE_LIMIT; // Get the rate limit from config.php
 
-    // Connect to a data store (e.g., Redis, database, or in-memory cache) where request counts are stored
-    $conn = connectToDatabase(); // Implement connectToDataStore() to establish a connection
+    // Connect to a database
+    $conn = connectToDatabase(); 
 
     // Check if the request count for the client identifier exceeds the rate limit
-    $requestCount = getRequestCountFromDataStore($conn, $requestIdentifier); // Implement getRequestCountFromDataStore()
+    $requestCount = getRequestCountFromDataStore($conn, $requestIdentifier);
     
     if ($requestCount >= $rateLimit) {
         return false; // The request should be rate-limited
     } else {
         // Increment the request count for the client identifier
-        incrementRequestCountInDataStore($conn, $requestIdentifier); // Implement incrementRequestCountInDataStore()
+        incrementRequestCountInDataStore($conn, $requestIdentifier); // 
         // Set an expiration time for the request count data in the data store (e.g., 1 minute)
-        setRequestCountExpiration($conn, $requestIdentifier, $timeWindow); // Implement setRequestCountExpiration()
+        setRequestCountExpiration($conn, $requestIdentifier, $timeWindow); 
         return false; // The request is not rate-limited
     }
 }
@@ -51,7 +51,7 @@ function getClientIdentifier() {
             // Extract the token from the header
             $token = substr($authorizationHeader, 7);
             // Validate and verify the token here
-            $decoded = validateJWT($token); // Implement the validateJWT function
+            $decoded = validateJWT($token); 
             if ($decoded) {
                 return $decoded->user_id; // Return the user ID or client identifier
             }
@@ -65,7 +65,7 @@ function getClientIdentifier() {
             if ($decodedCredentials) {
                 list($apiKey, $apiSecret) = explode(':', $decodedCredentials, 2);
                 // Validate the API key here
-                if (validateApiKey($apiKey)) { // Implement validateApiKey function
+                if (validateApiKey($apiKey)) { 
                     return $apiKey; // Return the API key
                 }
             }
