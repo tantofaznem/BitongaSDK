@@ -119,6 +119,37 @@ bitongaSDK.updateBitongaWord(1, updatedWordData).then(updateResult => {
 });
 ```
 
+# Java Usagee:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        String apiUrl = "http://example.com";  // Replace with your API URL
+        String apiKey = "your_api_key";        // Replace with your API key
+
+        BitongaDictionarySDK bitongaSDK = new BitongaDictionarySDK(apiUrl, apiKey);
+
+        // Example: Get all Bitonga words
+        String words = bitongaSDK.getBitongaWords();
+        System.out.println(words);
+
+        // Example: Get a specific Bitonga word by ID
+        int wordId = 1;
+        String word = bitongaSDK.getBitongaWord(wordId);
+        System.out.println(word);
+
+        // Example: Add a new Bitonga word
+        String newWordData = "{\"word\": \"new_word\", \"translation\": \"new_translation\"}";
+        String newWord = bitongaSDK.addBitongaWord(newWordData);
+        System.out.println(newWord);
+
+        // Example: Update a Bitonga word
+        String updatedWordData = "{\"word\": \"updated_word\", \"translation\": \"updated_translation\"}";
+        String updateResult = bitongaSDK.updateBitongaWord(1, updatedWordData);
+        System.out.println(updateResult);
+    }
+}
+```
 
 ## Example of response
 
