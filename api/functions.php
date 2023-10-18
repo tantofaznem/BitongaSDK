@@ -106,6 +106,42 @@ function validateJWT($jwt) {
 
 // Other Helper Functions
 
+// Function to set an expiration time for the request count data in the MySQL table
+function setRequestCountExpiration($conn, $requestIdentifier, $timeWindow) {
+    $expirationTime = time() + $timeWindow;
+
+    $query = "INSERT INTO request_rate_limit (request_identifier, request_count, expiration_time)
+              VALUES (?, 1, ?)
+              ON DUPLICATE KEY UPDATE request_count = request_count + 1, expiration_time = ?";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('sii', $requestIdentifier, $expirationTime, $expirationTime);
+    $stmt->execute();
+}
+
+// Function to increment the request count for the client identifier in the MySQL table
+function incrementRequestCountInDatabase($conn, $requestIdentifier) {
+    $query = "INSERT INTO request_rate_limit (request_identifier, request_count, expiration_time)
+              VALUES (?, 1, ?)
+              ON DUPLICATE KEY UPDATE request_count = request_count + 1";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('si', $requestIdentifier, time());
+    $stmt->execute();
+}
+
+// Function to retrieve the request count from the MySQL table
+function getRequestCountFromDatabase($conn, $requestIdentifier) {
+    $query = "SELECT request_count FROM request_rate_limit WHERE request_identifier = ?";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('s', $requestIdentifier);
+    $stmt->execute();
+    $stmt->bind_result($requestCount);
+    $stmt->fetch();
+
+    return $requestCount;
+}
 
 // Function to handle CORS headers
 function handleCors() {
